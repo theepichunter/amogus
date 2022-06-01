@@ -38,7 +38,7 @@ def main():
                 break
 
     # pen.update()
-    print(points)
+    #print(points)
 
 
 if __name__ == '__main__':
