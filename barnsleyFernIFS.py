@@ -9,16 +9,34 @@ pen.color("green")
 pen.penup()
 turtle.tracer(False)
 
+
+def collapse_to_leaf(currentFrac, points):
+    for k in range(15000):
+        x, y = points[k]
+        r = random.random()
+        pen.goto(65 * x * 1.5, 37 * y * 1.5 - 252)
+        pen.pendown()
+        pen.dot(1)
+        pen.penup()
+        l = 1
+        a, b = points[k]
+        x = (np.matmul(currentFrac.affineList[l - 1].contraction, [a, b]) + currentFrac.affineList[
+                    l - 1].translate).item(0)
+        y = (np.matmul(currentFrac.affineList[l - 1].contraction, [a, b]) + currentFrac.affineList[
+                    l - 1].translate).item(1)
+
+
 def main():
     x, y = 0, 0
-    zoom = 2
+    zoom = 1.5
     points = []
     currentFrac = h.presets.get('Barnsley')
-    h.shear(currentFrac, 0.05)
+    #h.shear(currentFrac, 0.9, 0, 1)
+
     #h.rotate(currentFrac, -0.1)
     #h.scale(currentFrac, 10)
 
-    for n in range(20000):
+    for n in range(15000):
         points.append([x, y])
         # print(("{} {}").format(x, y))
         pen.goto(65 * x * zoom, 37 * y * zoom - 252)  # scale the fern to fit nicely inside the window
@@ -38,7 +56,8 @@ def main():
                 break
 
     # pen.update()
-    #print(points)
+    pen.color("orange")
+    collapse_to_leaf(currentFrac, points)
 
 
 if __name__ == '__main__':
