@@ -26,26 +26,19 @@ class Hutchison:
         return len(self.affineList)
 
 
-def rotate(hutchison, theta):
+def rotate(hutchison, theta, lower, upper):
     rotation = ([[np.cos(theta), np.sin(theta)], [-np.sin(theta), np.cos(theta)]])
-    for i in range(hutchison.getLength()):
+    for i in range(lower, upper):
         hutchison.affineList[i].contraction = np.matmul(hutchison.affineList[i].contraction, rotation)
 
-
-#def __rotate__(hutchison, theta):
-    #rotation = ([[np.cos(theta), np.sin(theta)], [-np.sin(theta), np.cos(theta)]])
-    #for i in range(hutchison.getLength()):
-        #hutchison.affineList[i].contraction = np.matmul(hutchison.affineList[i].contraction, rotation)
-
-def shear(hutchison, shear_fac):
+def shear(hutchison, shear_fac, lower, upper):
     shear = ( [[1, shear_fac] , [0,1]] )
-    for i in range(hutchison.getLength()):
+    for i in range(lower, upper):
         hutchison.affineList[i].contraction = np.matmul(hutchison.affineList[i].contraction, shear)
 
-
-def scale(hutchison, scale_fac):
+def scale(hutchison, scale_fac, lower, upper):
     scale = ( [[scale_fac , 0] , [0,scale_fac]] )
-    for i in range(hutchison.getLength()):
+    for i in range(lower, upper):
         hutchison.affineList[i].contraction = np.matmul(hutchison.affineList[i].contraction, scale)
 
 
