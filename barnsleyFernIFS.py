@@ -28,9 +28,9 @@ def collapse_to_leaf(currentFrac, points):
 
 def main():
     x, y = 0, 0
-    zoom = .1
+    zoom = 1
     points = []
-    currentFrac = h.presets.get('Serpenski')
+    currentFrac = h.presets.get('Barnsley')
     # points.append([50,0])
     # points.append([-50,0])
     # points.append([0,87])
@@ -40,17 +40,19 @@ def main():
     #     pen.pendown()
     #     pen.dot(10)
     #     pen.penup()
-    #h.shear(currentFrac, 0.9, 0, 1)
+    #h.shear(currentFrac, 1.1, 0, 1)
 
-    #h.rotate(currentFrac, -0.1)
-    #h.scale(currentFrac, 10)
+    #h.rotate(currentFrac, -0.1, 0, 1)
+    #h.scale(currentFrac, 0.8, 0, 1)
 
-    for n in range(10000):
+
+
+    for n in range(2000):
         points.append([x, y])
         # print(("{} {}").format(x, y))
         pen.goto(65 * x * zoom, 37 * y * zoom - 252)  # scale the fern to fit nicely inside the window
         pen.pendown()
-        pen.dot(2)
+        pen.dot(1)
         pen.penup()
         r = random.random()
 
@@ -68,6 +70,18 @@ def main():
     # pen.color("orange")
     # collapse_to_leaf(currentFrac, points)
 
+    #print(np.linalg.inv(np.identity(2) - currentFrac.affineList[0].contraction))
+    #print(currentFrac.affineList[1].translate)
+
+    # print out large orange dot for end behavior of single affine transformation
+    c_a = 1 # current affine transformation in Hutchison
+    x = np.matmul( np.linalg.inv(np.identity(2) - currentFrac.affineList[c_a].contraction), np.transpose(currentFrac.affineList[c_a].translate)).item(0)
+    y = np.matmul( np.linalg.inv(np.identity(2) - currentFrac.affineList[c_a].contraction), np.transpose(currentFrac.affineList[c_a].translate)).item(1)
+    pen.goto(65 * x * zoom, 37 * y * zoom - 252)  # scale the fern to fit nicely inside the window
+    pen.color("orange")
+    pen.pendown()
+    pen.dot(10)
+    pen.penup()
 
 if __name__ == '__main__':
     main()
