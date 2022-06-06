@@ -36,15 +36,25 @@ d3 = Affine(0.5, 0, 0, 0.5, C[0]/2, C[1]/2)
 probVec4 = [.33, .33, .33]
 affineList4 = [d1, d2, d3]
 
+# square
+A = [50,0]
+B = [-50,0]
+C = [50,50]
+D = [-50, 50]
+affineList5 = [Affine(0.5, 0, 0, 0.5, A[0]/2, A[1]/2), Affine(0.5, 0, 0, 0.5, B[0]/2, B[1]/2), Affine(0.5, 0, 0, 0.5, C[0]/2, C[1]/2), Affine(0.5, 0, 0, 0.5, D[0]/2, D[1]/2)]
+probVec5 = [.25, .25, .25, .25]
+
 # Initialize each Hutchison
 h1 = Hutchison(affineList1, probVec1)
 h2 = Hutchison(affineList2, probVec2)
 h3 = Hutchison(affineList3, probVec3)
 h4 = Hutchison(affineList4, probVec4)
+h5 = Hutchison(affineList5, probVec5)
 
 presets = {
     "Barnsley": h1,
     "Tree": h2,
     "Dragon": h3,
-    "Serpenski": h4
+    "Serpenski": h4,
+    "Square": h5
     }

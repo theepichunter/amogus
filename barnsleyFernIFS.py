@@ -30,7 +30,7 @@ def main():
     x, y = 0, 0
     zoom = .1
     points = []
-    currentFrac = h.presets.get('Serpenski')
+    currentFrac = h.presets.get('Square')
     # points.append([50,0])
     # points.append([-50,0])
     # points.append([0,87])
