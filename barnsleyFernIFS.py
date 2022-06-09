@@ -29,27 +29,14 @@ def collapse_to_leaf(currentFrac, points):
 
 def main():
     x, y = 0, 0
-    zoom = 4
+    zoom = .75
     points = []
-    currentFrac = h.presets.get('Tree2')
-    # points.append([50,0])
-    # points.append([-50,0])
-    # points.append([0,87])
-    #
-    # for (x, y) in points:
-    #     pen.goto(65 * x * zoom, 37 * y * zoom - 252)
-    #     pen.pendown()
-    #     pen.dot(10)
-    #     pen.penup()
-    #h.shear(currentFrac, 1.1, 0, 1)
-
-    #h.rotate(currentFrac, -0.1, 0, 1)
-    #h.scale(currentFrac, 0.8, 0, 1)
+    currentFrac = h.presets.get('Forest')
 
     for n in range(30000):
         points.append([x, y])
         # print(("{} {}").format(x, y))
-        pen.goto(65 * x * zoom-200, 37 * y * zoom - 100)  # scale the fern to fit nicely inside the window
+        pen.goto(65 * x * zoom-20, 37 * y * zoom - 100)  # scale the fern to fit nicely inside the window
         pen.pendown()
         pen.dot(1)
         pen.penup()
@@ -77,7 +64,7 @@ def main():
         c_a = i # current affine transformation in Hutchison
         x = np.matmul( np.linalg.inv(np.identity(2) - currentFrac.affineList[c_a].contraction), np.transpose(currentFrac.affineList[c_a].translate)).item(0)
         y = np.matmul( np.linalg.inv(np.identity(2) - currentFrac.affineList[c_a].contraction), np.transpose(currentFrac.affineList[c_a].translate)).item(1)
-        pen.goto(65 * x * zoom-200, 37 * y * zoom - 100)  # scale the fern to fit nicely inside the window
+        pen.goto(65 * x * zoom-20, 37 * y * zoom - 100)  # scale the fern to fit nicely inside the window
         pen.color("orange")
         pen.dot(10)
 
